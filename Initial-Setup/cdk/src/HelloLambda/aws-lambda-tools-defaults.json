@@ -1,0 +1,20 @@
+{
+  "region": "us-east-1",
+  "profile": "my-sso-profile",
+  "configuration": "Release",
+  "framework": "net8.0",
+  "function-name": "CdkStack-HelloFunctionD909AE8C-aQ4bpH4nMWN3",
+  "function-description": "Hello/echo starter Lambda exposed via a Function URL",
+  "package-type": "Zip",
+  "function-handler": "HelloLambda::HelloLambda.Function::FunctionHandler",
+  "function-memory-size": 256,
+  "function-role": "arn:aws:iam::123456789012:role/CdkStack-HelloFunctionServiceRole186F1BA8-ks20CesnIo7M",
+  "function-timeout": 10,
+  "function-runtime": "dotnet8",
+  "function-architecture": "x86_64",
+  "function-subnets": "",
+  "function-security-groups": "",
+  "tracing-mode": "PassThrough",
+  "environment-variables": "",
+  "image-tag": ""
+}

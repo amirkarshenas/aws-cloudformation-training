@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Sample starter stack: a private, versioned, encrypted S3 bucket.
+  Deploy with: .\deploy.ps1 -TemplateFile templates\sample-s3-bucket.yaml -StackName sample-s3-bucket
+
+Parameters:
+  BucketNameSuffix:
+    Type: String
+    Description: Suffix appended to the bucket name to keep it globally unique.
+    Default: initial-setup
+    AllowedPattern: "[a-z0-9-]+"
+
+Resources:
+  SampleBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::AccountId}-${AWS::Region}-${BucketNameSuffix}"
+      VersioningConfiguration:
+        Status: Enabled
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+Outputs:
+  BucketName:
+    Description: Name of the created bucket.
+    Value: !Ref SampleBucket
+  BucketArn:
+    Description: ARN of the created bucket.
+    Value: !GetAtt SampleBucket.Arn
